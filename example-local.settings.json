@@ -1,0 +1,14 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "",
+    "FUNCTIONS_WORKER_RUNTIME": "python",
+    "AzureWebJobsFeatureFlags": "EnableWorkerIndexing",
+    "AZURE_OPENAI_ENDPOINT": "https://XXXXXXXXXXXXXX.openai.azure.com/",
+    "AZURE_DALLE_ENDPOINT": "https://XXXXXXXXXXXXXX.openai.azure.com/",
+    "AZURE_OPENAI_KEY": "90fa0b1e801fXXXXXXXXXXXXXXXXXXXX",
+    "DALLE_API_KEY": "1bc0ee86977eXXXXXXXXXXXXXXXXXXXX",
+    "TELEGRAM_BOT_TOKEN": "6985477804:AXXXXXXXXXXXXXXXXXXXXXXXXXX",
+    "AZURE_STORAGE_CONNECTION_STRING": "DefaultEndpointsProtocol=https;AccountName=XXXXXXX;AccountKey=XXXXXXXXXXXXXXXXXXXXXXXXXXXX==;EndpointSuffix=core.windows.net"
+  }
+}
