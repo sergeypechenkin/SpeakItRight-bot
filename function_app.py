@@ -14,7 +14,7 @@ def http_trigger(req: func.HttpRequest) -> func.HttpResponse:
     bot_token = os.getenv("TELEGRAM_BOT_TOKEN")
     if req.method == 'POST':    
         update = req.get_json()
-        logging.info(f'POST Update = {update}')
+        #logging.info(f'POST Update = {update}')
 
         try:
 
@@ -38,10 +38,11 @@ def http_trigger(req: func.HttpRequest) -> func.HttpResponse:
         return func.HttpResponse("This is a bot server.", status_code=200)
 
 def message_next(chat_id, bot_token, text, fileprefix,blob_client):
-        logging.info(f'Update has a next message = {text}, fileprefix: {fileprefix}')
+        #logging.info(f'Update has a next message = {text}, fileprefix: {fileprefix}')
         bot = TeleBot(bot_token)
         conversation = []
         querry = []
+
         #combine history and prompt to pass to openai
         if blob_client.exists():
             if text == '/startover':
@@ -53,14 +54,17 @@ def message_next(chat_id, bot_token, text, fileprefix,blob_client):
                 conversation = blob_client.download_blob().readall().decode('utf-8')
                 lines = conversation.split('\n')
                 conversation = [json.loads(line) for line in lines]
-
+                #check if the previous user input is the same as the current one. This indicates a telegram retry due to 30 sec retry policy
+                if conversation[-2]["content"] == text:
+                    logging.warn('The text is the same as the previous user content in the history file')
+                    return func.HttpResponse(status_code=200)
         conversation.append({"role": "user", "content": text})
         conversation = conversation[-4:]
         with open(f'prompt_english.txt', 'r') as f:
                 querry=[{"role": "system", "content": f.read().strip()}]
                 querry.extend(conversation)
 
-        logging.info(f'Conversation is ready to pass to openai = {querry}')
+        #logging.info(f'Conversation is ready to pass to openai = {querry}')
         response = get_response(querry)
         bot.send_message(chat_id, response, parse_mode="Markdown")
         conversation.append({"role": "assistant", "content": response})
@@ -70,7 +74,7 @@ def message_next(chat_id, bot_token, text, fileprefix,blob_client):
 
 def get_response(conversation):
 
-    logging.info(f'Conversation = {conversation}')
+    #logging.info(f'Conversation = {conversation}')
     client = AzureOpenAI(
     api_key = os.getenv("AZURE_OPENAI_KEY"),  
     api_version = "2023-09-15-preview",
@@ -83,5 +87,5 @@ def get_response(conversation):
 )
     
     text = response.choices[0].message.content
-    logging.info(f'Response = {text}')
+    #logging.info(f'Response = {text}')
     return text
