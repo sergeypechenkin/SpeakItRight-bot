@@ -99,6 +99,8 @@ def message_next(chat_id, bot_token, text, fileprefix, blob_client):
     response = get_response(query)
 
     # Send the response to the user
+    # Log the response message
+    logging.log(logging.INFO, f'Response: {response}')
     bot.send_message(chat_id, response, parse_mode="Markdown")
 
     # Append the assistant's response to the conversation
