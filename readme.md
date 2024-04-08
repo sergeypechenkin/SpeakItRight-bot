@@ -15,30 +15,48 @@ Whether you're looking to build a chatbot, virtual assistant, or something entir
 
 Let's embark on this exciting journey together. Happy coding! 🚀
 
+# Part 1: Clone repository
 
+1. **Locate the Fork Button**: On the top right corner of the repository (this page), you'll see a button labeled "Fork." It's next to the "Watch" and "Star" buttons.
 
+2. **Click Fork**: Click on the "Fork" button. This action will create a copy of the repository under your GitHub account.
 
-# Part 1: VS Code
+3. **Choose the Destination**: A dialog will appear asking where you want to fork the repository. Choose your user account or any organization you're a member of where you want to fork the repository.
+
+4. **Wait for the Fork to Complete**: GitHub will start the process of forking the repository. Depending on the size of the repository, this process may take a few moments.
+
+5. **Confirm Fork Creation**: Once the forking process is complete, you'll be redirected to the forked repository under your GitHub account. You should see a message indicating that the fork was successful.
+
+6. **Clone Your Fork**: In order to work on the forked repository locally, you should clone it to your local machine using Git. Click on the green "Code" button and copy the repository URL. 
+
+7. Open VS Code, go to **'View'**, then **'Command Palette'**, and type **'Git: Clone'**
+
+8. Enter the repository URL you copied: `https://github.com/sergeypechenkin/SpeakItRight-bot`, click 'Clone From URL'
+
+9. Choose a folder on your computer to use as the local Git repository
+
+10. Go to **'File'**, select **'Open Folder'**, and then open the created folder
+
+That's it! You've successfully forked the repository and can now start making changes to it. Remember, the forked repository is independent of the original repository, so you can make changes without affecting the original project. If you want to contribute your changes back to the original repository, you can do so by creating a pull request.
+
+# Part 2: VS Code
 
 ### Install VS Code extensions:
 - Python
 - Azure Function
 
-
-### Clone repository:
-1. Go to **'View'**, then **'Command Palette'**, and type **'Git: Clone'**
-3. Enter the repository URL: `https://github.com/sergeypechenkin/SpeakItRight-bot`, click 'Clone From URL'
-4. Choose a folder on your computer to use as the local Git repository
-5. Go to **'File'**, select **'Open Folder'**, and then open the created folder
+Visual Studio Code (VS Code) extensions are like add-ons or plugins that enhance the functionality of the VS Code editor. They allow you to customize and tailor your coding experience to better suit your needs. 
 
 ### Create virtual environment:
 1. Go to **'View'**, then **'Command Palette'**, and type **'Python: Create environment'**
-3. Choose Venv
-4. Python
-5. Install dependencies
+2. Choose .venv -> Python
+3. Install dependencies
+
+That's it! You've successfully created and activated a virtual environment for your Python project. You can now work on your project within the isolated environment without affecting your system-wide Python installation.
+You can activate this environment by opening a project's folder in VSCode and running `.venv\Scripts\activate` script
 
 ### Rename example-local.settings.json to local.settings.json
-File `local.settings.json` will not be uploaded to the Github repository to prevent secret leak
+File `local.settings.json` will not be uploaded to the Github repository to prevent a leakage of your secrets
 
 # Part 2: Azure portal
 
