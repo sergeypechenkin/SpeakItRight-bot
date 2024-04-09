@@ -79,21 +79,22 @@ If you don't have a Terminal opened, click '**Terminal**' ->  '**New Terminal**'
 2. Now we need to get a URL of the application we deployed. 
 Go to **'View'**, then **'Command Palette'**, and type '**Azure Functions: Copy Function URL**'. Again, choose your '**Subscription**', '**Function**' and application itself `http_trigger` by default. Paste the URL in the notepad, we will need it later. 
 
-# Part 3: Telegram
+# Part 3: Setting Up Telegram
 
-1. Find the contact `Botfather` with the blue checkmark
-2. Type `/newbot`. Type a **name** for the bot. Your display name that others see in chats and channels. It can be anything you like and changed anytime.
-3. Type a **username** for the bot. Unique identifier starting with "@" used for your bot's profile's URL. It helps others find and mention it easily. Once set, it can't be changed or reused. It should end with the `'bot'` word.
-4. Copy HTTP API access token and paste the it to your `local.settings.json` file *and* to a notepad temporary
+Follow these steps to set up your bot on Telegram:
 
-5. Now, it's time to set a webhook to point to our Azure Function app. We will use the Telegram Bot API for that. <br>
-The first command we need is: `https://api.telegram.org/bot<token>/setWebhook?url={function_url}` <br>
-where `<token>` is your telegram API token, and `{function_url}` is your Function URL. <br> Let's take `https://func1-tg-partybot-3111hb.azurewebsites.net/api/http_trigger` as an example for URL and `6255927130:AAFn8efklsgvy35TYk5MqWwFULknbanF3Js` as a token and construct our example request: <br>
+1. Search for the contact `Botfather` (it has a blue checkmark).
+2. Send the message `/newbot`. You'll be prompted to provide a **name** for the bot. This is the display name that others will see in chats and channels. You can choose any name you like, and you can change it at any time.
+3. Next, you'll need to provide a **username** for the bot. This is a unique identifier that starts with "@" and will be used for your bot's profile URL. It should be easy for others to find and mention. Once set, it can't be changed or reused. Make sure it ends with the word `'bot'`.
+4. After you've set the name and username, you'll receive an HTTP API access token. Copy this token and paste it into your `local.settings.json` file. Also, save it in a notepad temporarily as you'll need it later.
 
-`https://api.telegram.org/bot6255927130:AAFn8efklsgvy35TYk5MqWwFULknbanF3Js/setWebhook?url=https://func1-tg-partybot-3111hb.azurewebsites.net/api/http_trigger` <br><br>
-6. Now, copy, paste and run this request in your browser. If constucted correctly, you should see  `"description": "Webhook was set"`.<br>
-7. You can check the webhook setting by calling another request: <br>
-`https://api.telegram.org/bot<token>/getWebhookInfo`
+5. Now, you need to set a webhook that points to our Azure Function app. We will use the Telegram Bot API for this. The command you need is: `https://api.telegram.org/bot<token>/setWebhook?url={function_url}`. Replace `<token>` with your Telegram API token and `{function_url}` with your Function URL. For example, if your URL is `https://func1-tg-partybot-3111hb.azurewebsites.net/api/http_trigger` and your token is `6255927130:AAFn8efklsgvy35TYk5MqWwFULknbanF3Js`, your request will look like this:
+
+    `https://api.telegram.org/bot6255927130:AAFn8efklsgvy35TYk5MqWwFULknbanF3Js/setWebhook?url=https://func1-tg-partybot-3111hb.azurewebsites.net/api/http_trigger`
+
+6. Copy this request, paste it into your browser's address bar, and press Enter. If the request is constructed correctly, you should see a message saying `"description": "Webhook was set"`.
+
+7. You can check the webhook setting by making another request: `https://api.telegram.org/bot<token>/getWebhookInfo`
 
 # Part 4: VS Code - uploading app settings to Azure Function
 
