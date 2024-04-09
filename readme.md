@@ -15,22 +15,7 @@ Whether you're looking to build a chatbot, virtual assistant, or something entir
 
 Let's embark on this exciting journey together. Happy coding! 🚀
 
-# Part 1: Creating Azure resources
-
-| Azure Resource type      | Name (example)        | Comments                                                                                                                  |
-|--------------------|------------------------|---------------------------------------------------------------------------------------------------------------------------|
-| Resource group     | OpenAIBot1-PRD-EUN-rg |  Set the region nearest to you for all resources, except those from OpenAI        |
-| Storage account    | openaibot1sa001dsfwd   | storage account names must be between 3 and 24 characters in length and may contain numbers and lowercase letters only. Your storage account name must be unique within Azure                                                                                                                          |
-|                    |                        |Go to Storage Account created, Security & Network -> Access Keys -> Show and Copy Connection string. Put it in the local.settings.json
-| SA blob container  | history                |                  |
-| Function           | OpenAIBot1-PRD-NEU-func     | Settings - Python, 3.11, NEU , Serverless = eventrdiven.  |
-| Azure OpenAI       | Openaibot-prd-cae-openai | Check email from csgate@microsoft.com for the Region (We are pleased to inform you that you have been onboarded to Azure OpenAI Service GPT-4 in the CanadaEast region.) <BR>
-|||Go to Keys and Deployments and copy Key1 and Endpoint to your local.settings.json. <BR>
-|||If you don't have access -  submit this form to request access to OpenAI. [Request Access to OpenAI Service](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR7en2Ais5pxKtso_Pz4b1_xUNTZBNzRKNlVQSFhZMU9aV09EVzYxWFdORCQlQCN0PWcu). Corporate subscription and email only. It may take a few days to complete <br>  |
-| Open AI Model      | gpt-4     | Go to Azure OpenAI you created, Model Deployments and click Manage Deployments. Click Create new deployment. <br> Model - gpt-4 1106-Preview, Standard, name gpt-4 (hardcoded in the app) |
-
-
-# Part 2: Cloning the Repository
+# Part 1: Cloning the Repository and preparing VSCode
 
 1. **Locate the Fork Button**: On the top right corner of the repository (this page), you'll see a button labeled "Fork." It's next to the "Watch" and "Star" buttons.
 
@@ -50,11 +35,9 @@ Let's embark on this exciting journey together. Happy coding! 🚀
 
 9. Choose a folder on your computer to use as the local Git repository
 
-10. Click '**Open the folder in VS Code **'
+10. Click '**Open the folder in VS Code**'
 
 That's it! You've successfully forked the repository and can now start making changes to it. Remember, the forked repository is independent of the original repository, so you can make changes without affecting the original project. If you want to contribute your changes back to the original repository, you can do so by creating a pull request.
-
-# Part 2: Preparing VS Code and deploying the application to the Azure Function
 
 ### Install VSCode extensions:
 - Python
@@ -73,9 +56,25 @@ File `local.settings.json` will not be uploaded to the Github repository to prev
 That's it! You've successfully created and activated a virtual environment for your Python project. You can now work on your project within the isolated environment without affecting your system-wide Python installation.
 You can activate this environment by opening a project's folder in VSCode and running `.venv\Scripts\activate` script
 
-### Deploy your application into Azure Function
+# Part 2: Creating Azure resources
+
+| Azure Resource type      | Name (example)        | Comments                                                                                                                  |
+|--------------------|------------------------|---------------------------------------------------------------------------------------------------------------------------|
+| Resource group     | OpenAIBot1-PRD-EUN-rg |  Set the region nearest to you for all resources, except those from OpenAI        |
+| Storage account    | openaibot1sa001dsfwd   | storage account names must be between 3 and 24 characters in length and may contain numbers and lowercase letters only. Your storage account name must be unique within Azure                                                                                                                          |
+|                    |                        |Go to Storage Account created, Security & Network -> Access Keys -> Show and Copy Connection string. Put it in the local.settings.json
+| SA blob container  | history                |                  |
+| Function           | OpenAIBot1-PRD-NEU-func     | Settings - Python, 3.11, NEU , Serverless = eventrdiven.  |
+| Azure OpenAI       | Openaibot-prd-cae-openai | Check email from csgate@microsoft.com for the Region (We are pleased to inform you that you have been onboarded to Azure OpenAI Service GPT-4 in the CanadaEast region.) <BR>
+|||Go to Keys and Deployments and copy Key1 and Endpoint to your local.settings.json. <BR>
+|||If you don't have access -  submit this form to request access to OpenAI. [Request Access to OpenAI Service](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR7en2Ais5pxKtso_Pz4b1_xUNTZBNzRKNlVQSFhZMU9aV09EVzYxWFdORCQlQCN0PWcu). Corporate subscription and email only. It may take a few days to complete <br>  |
+| Open AI Model      | gpt-4     | Go to Azure OpenAI you created, Model Deployments and click Manage Deployments. Click Create new deployment. <br> Model - gpt-4 1106-Preview, Standard, name gpt-4 (hardcoded in the app) |
+
+# Part 3: Deploying your application into Azure Function
+
 
 1. Go to **'View'**, then **'Command Palette'**, and type '**Azure Functions: Deploy to Azure Function App**'. Sign-in to your Azure account (if not done yet). Choose your '**Subscription**', then choose you '**Function**'. Click `Deploy`. This will overwrite previous application version, if any.  
+
 2. Now we need to get a URL of the application we deployed. 
 Go to **'View'**, then **'Command Palette'**, and type '**Azure Functions: Copy Function URL**'. Again, choose your '**Subscription**', '**Function**' and application itself `http_trigger` by default. Paste the URL in the notepad, we will need it later. 
 
@@ -95,7 +94,7 @@ where `<token>` is your telegram API token, and `{function_url}` is your Functio
 7. You can check the webhook setting by calling another request: <br>
 `https://api.telegram.org/bot<token>/getWebhookInfo`
 
-# Part 4: VS Code
+# Part 4: VS Code - uploading app settings to Azure Function
 
 This marks the final stage of our workshop. 
 Our application has been successfully deployed. Now, it's time to configure all the settings we've defined in the `local.settings.json` file.
