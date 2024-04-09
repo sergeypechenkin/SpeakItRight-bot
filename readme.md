@@ -31,11 +31,11 @@ Let's embark on this exciting journey together. Happy coding! 🚀
 
 7. Open VS Code, go to **'View'**, then **'Command Palette'**, and type **'Git: Clone'**
 
-8. Enter the repository URL you copied: `https://github.com/sergeypechenkin/SpeakItRight-bot`, click 'Clone From URL'
+8. Enter the repository URL you copied: `https://github.com/sergeypechenkin/SpeakItRight-bot`, click **'Clone From URL'**
 
 9. Choose a folder on your computer to use as the local Git repository
 
-10. Click '**Open the folder in VS Code**'
+10. Click '**Open the folder in VSCode**'
 
 That's it! You've successfully forked the repository and can now start making changes to it. Remember, the forked repository is independent of the original repository, so you can make changes without affecting the original project. If you want to contribute your changes back to the original repository, you can do so by creating a pull request.
 
@@ -54,7 +54,8 @@ File `local.settings.json` will not be uploaded to the Github repository to prev
 3. Check box on `requirements.txt` to install dependencies, click **'Ok'**
 
 That's it! You've successfully created and activated a virtual environment for your Python project. You can now work on your project within the isolated environment without affecting your system-wide Python installation.
-You can activate this environment by opening a project's folder in VSCode and running `.venv\Scripts\activate` script
+You can activate this environment by opening a project's folder in VSCode and running `.venv\Scripts\activate` script. 
+If you don't have a Terminal opened, click '**Terminal**' ->  '**New Terminal**' 
 
 # Part 2: Creating Azure resources
 
@@ -63,7 +64,7 @@ You can activate this environment by opening a project's folder in VSCode and ru
 | Resource group     | OpenAIBot1-PRD-EUN-rg |  Set the region nearest to you for all resources, except those from OpenAI        |
 | Storage account    | openaibot1sa001dsfwd   | storage account names must be between 3 and 24 characters in length and may contain numbers and lowercase letters only. Your storage account name must be unique within Azure                                                                                                                          |
 |                    |                        |Go to Storage Account created, Security & Network -> Access Keys -> Show and Copy Connection string. Put it in the local.settings.json
-| SA blob container  | history                |                  |
+| SA blob container  | history                |Go to Data Storage -> Containers and click '**+ Container**'                  |
 | Function           | OpenAIBot1-PRD-NEU-func     | Settings - Python, 3.11, NEU , Serverless = eventrdiven.  |
 | Azure OpenAI       | Openaibot-prd-cae-openai | Check email from csgate@microsoft.com for the Region (We are pleased to inform you that you have been onboarded to Azure OpenAI Service GPT-4 in the CanadaEast region.) <BR>
 |||Go to Keys and Deployments and copy Key1 and Endpoint to your local.settings.json. <BR>
@@ -99,7 +100,7 @@ where `<token>` is your telegram API token, and `{function_url}` is your Functio
 This marks the final stage of our workshop. 
 Our application has been successfully deployed. Now, it's time to configure all the settings we've defined in the `local.settings.json` file.
 
-1. Make sure you have set correctly all settings in your `local.settings.json`.
+1. Ensure that all settings in your `local.settings.json` are correctly set and **saved**.
 2. Go to **'View'**, then **'Command Palette'**, and type **'Azure functions: Upload local settings'**. Select your '**Subscription**' and '**Function**'<br><br>
 
 # Congratulations! 🎉 Your bot is now up and running, ready to serve its purpose! Now, it's time to put it to the test.
