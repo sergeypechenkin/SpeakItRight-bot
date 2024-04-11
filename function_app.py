@@ -31,7 +31,7 @@ def http_trigger(req: func.HttpRequest) -> func.HttpResponse:
                 fileprefix = f'{username}_{user_id}'
 
                 # Log the received message
-                logging.log(logging.INFO, f'User {username} with id {user_id} sent a message: {update["message"]["text"]}')
+                logging.warning(f'User {username} with id {user_id} sent a message: {update["message"]["text"]}')
 
                 # Get the Azure storage connection string from environment variables
                 connection_string = os.getenv("AZURE_STORAGE_CONNECTION_STRING")
@@ -50,6 +50,9 @@ def http_trigger(req: func.HttpRequest) -> func.HttpResponse:
 
         except Exception as e:
             # Log any exceptions that occur
+            bot = TeleBot(bot_token)
+            bot.send_message(chat_id, f'Oops, something went wrong: {e}', parse_mode="HTML")
+            
             logging.error(f'Oops, we got an exception in http_trigger: {e}')
 
             # Return a 200 OK response
@@ -73,7 +76,7 @@ def message_next(chat_id, bot_token, text, fileprefix, blob_client):
         if text == '/startover':
             blob_client.delete_blob()
             bot.send_message(chat_id, "Okay, let's start over")
-            logging.info(f'{fileprefix}_history.txt deleted')
+            logging.warning(f'{fileprefix}_history.txt deleted')
             return func.HttpResponse("This is a bot server.", status_code=200)
         else:
             # Download the blob and split it into lines
@@ -83,7 +86,7 @@ def message_next(chat_id, bot_token, text, fileprefix, blob_client):
 
             # Check if the previous user input is the same as the current one (Prevent timeout loo)
             if conversation[-2]["content"] == text:
-                logging.warn('The text is the same as the previous user content in the history file')
+                logging.warning('The text is the same as the previous user content in the history file')
                 return func.HttpResponse(status_code=200)
 
     # Append the user's text to the conversation
@@ -98,15 +101,28 @@ def message_next(chat_id, bot_token, text, fileprefix, blob_client):
         query.extend(conversation)
 
     # Get the response from the AI model
-    response = get_response(query)
+    full_response = get_response(query)
+    logging.warning(f'Full response: {full_response}')
 
-    # Send the response to the user
-    # Log the response message
-    logging.log(logging.INFO, f'Response: {response}')
-    bot.send_message(chat_id, response, parse_mode="Markdown")
+    # Split the response into code and non-code parts
+    if '***' in full_response:
+        split_response = full_response.split('***')
+        code_response = split_response[1]
+        bot.send_message(chat_id, f"<b>{code_response}</b>", parse_mode="HTML")
+        logging.warning(f'Corrected text: {code_response}')
+        non_code_response = split_response[0] + split_response[2]
+        if non_code_response:
+            bot.send_message(chat_id, non_code_response)
+            logging.warning(f'Explanation: {non_code_response}')
+    else:
+        code_response = ''
+        non_code_response = full_response
+        logging.warning(f'No corrections provided: {full_response}')
+        bot.send_message(chat_id, full_response)
+
 
     # Append the assistant's response to the conversation
-    conversation.append({"role": "assistant", "content": response})
+    conversation.append({"role": "assistant", "content": code_response})
 
     # Convert the conversation to JSON and upload it to the blob
     conversation = [json.dumps(message) for message in conversation]
