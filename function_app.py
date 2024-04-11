@@ -81,7 +81,7 @@ def message_next(chat_id, bot_token, text, fileprefix, blob_client):
             lines = conversation.split('\n')
             conversation = [json.loads(line) for line in lines]
 
-            # Check if the previous user input is the same as the current one
+            # Check if the previous user input is the same as the current one (Prevent timeout loo)
             if conversation[-2]["content"] == text:
                 logging.warn('The text is the same as the previous user content in the history file')
                 return func.HttpResponse(status_code=200)
@@ -90,9 +90,11 @@ def message_next(chat_id, bot_token, text, fileprefix, blob_client):
     conversation.append({"role": "user", "content": text})
     conversation = conversation[-4:]
 
-    # Read the prompt from the file and add it to the query
-    with open(f'prompt_english.txt', 'r') as f:
-        query = [{"role": "system", "content": f.read().strip()}]
+    # Read the prompt from the file, replace [Language] with the variable Language, and add it to the query
+    Language = os.getenv("Language")
+    with open(f'prompt_language.txt', 'r') as f:
+        prompt = f.read().strip().replace("[Language]", Language)
+        query = [{"role": "system", "content": prompt}]
         query.extend(conversation)
 
     # Get the response from the AI model

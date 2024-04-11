@@ -4,16 +4,46 @@ Hello and welcome, bot enthusiasts and developers alike!
 
 This comprehensive guide serves as your roadmap to creating your very own Azure OpenAI-powered bot. Whether you're a seasoned developer or just diving into the world of AI, this workshop guide is designed to provide you with detailed instructions and resources every step of the way.
 
-Inside this guide, you'll find:
+The bot we will be creating serves as a language teaching assistant. Its primary function is to help you improve your grammar and sound more fluent, almost like a native speaker. This bot does more than just correct your grammar - it explains the reasoning behind each correction. 
 
-- Step-by-step instructions for setting up your Azure environment
-- Guidance on creating and configuring the necessary Azure resources, including storage accounts, functions, and more
-- Tips and best practices for integrating Azure OpenAI into your bot application
-- Troubleshooting advice and common pitfalls to avoid
+Additionally, it has the capability to translate your phrases from any supported language to your desired one. You can interact with the bot in natural language, asking it to adjust the tone or make it shorter, etc. 
+
+By default, the bot translates to English, but you can change this setting to any language currently supported by OpenAI. The bot's prompt is fully customizable, allowing you to create an assistant with a different scenario. The possibilities are endless!
+
+Here is a recorded demo of the bot:
+
+![SpeakItRight Bot Demo](images/SpeakItRight-demo.gif)
+
+In this guide, you will discover:
+
+- **Prerequisites**: Essential requirements before you start.
+- **Step-by-step guidance**: Detailed instructions on creating and configuring the necessary Azure resources, including storage accounts, functions, and more.
+- **Github and VSCode usage**: Comprehensive guide on how to use Github and VSCode to create, modify, and update your bot.
+- **Troubleshooting advice and common pitfalls**: Useful tips to avoid common mistakes and solve problems (coming soon).
 
 Whether you're looking to build a chatbot, virtual assistant, or something entirely unique, this guide has you covered. Get ready to unleash the power of Azure OpenAI and take your bot-building skills to the next level!
 
 Let's embark on this exciting journey together. Happy coding! 🚀
+
+
+# Part 0: Prerequisites
+
+Before we start, there are a few things you need to have and do:
+
+1. **Azure Subscription**: Ensure you have an Azure subscription that belongs to a *Company*. Currently, access to the OpenAI service can only be requested for corporate subscriptions. Personal subscriptions or emails will not be approved. If you are a Microsoft Employee and don’t have one yet, follow this [guide](https://dev.azure.com/OneCommercial/NoCode/_wiki/wikis/NoCode.wiki/74/Managed-Azure-Tenant-Environment) to get a Microsoft Internal Subscription.
+
+2. **Request Access to Azure OpenAI**: Fill out this form to request access to Azure OpenAI: [Request Access to OpenAI Service](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR7en2Ais5pxKtso_Pz4b1_xUNTZBNzRKNlVQSFhZMU9aV09EVzYxWFdORCQlQCN0PWcu). Please note that this is only available for corporate subscriptions and emails. The approval process may take a couple of days, so I recommend getting this done as soon as possible. When filling out the form, make sure to check all four available Azure OpenAI service features in question 17.
+
+3. **Software Installation**: Download and install the following software:
+    - Git: [Download here](https://git-scm.com/download)
+    - Visual Studio Code: [Download here](https://code.visualstudio.com/download)
+
+4. **GitHub Account**: If you don’t already have a GitHub account, you can create one [here](https://github.com/).
+
+5. **Telegram Account**: Install the Telegram app and sign up if you do not have an account yet. You can download the app from [here](https://telegram.org/).
+
+6. **Allow Running of Unsigned Scripts**: Start PowerShell with the "Run as Administrator" option and run the following command to allow the execution of unsigned scripts: `Set-ExecutionPolicy RemoteSigned`. This is necessary for running certain scripts in your local development environment.
+
 
 # Part 1: Cloning the Repository and preparing VSCode
 
