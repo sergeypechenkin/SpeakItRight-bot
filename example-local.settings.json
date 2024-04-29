@@ -7,6 +7,7 @@
     "AZURE_OPENAI_ENDPOINT": "https://XXXXXXXXXXXXXX.openai.azure.com/",
     "AZURE_OPENAI_KEY": "90fa0b1e801fXXXXXXXXXXXXXXXXXXXX",
     "TELEGRAM_BOT_TOKEN": "6985477804:AXXXXXXXXXXXXXXXXXXXXXXXXXX",
+    "Language": "English",
     "AZURE_STORAGE_CONNECTION_STRING": "DefaultEndpointsProtocol=https;AccountName=XXXXXXX;AccountKey=XXXXXXXXXXXXXXXXXXXXXXXXXXXX==;EndpointSuffix=core.windows.net"
   }
 }
