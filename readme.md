@@ -131,8 +131,9 @@ Follow these steps to set up your bot on Telegram:
 This marks the final stage of our workshop. 
 Our application has been successfully deployed. Now, it's time to configure all the settings we've defined in the `local.settings.json` file.
 
-1. Ensure that all settings in your `local.settings.json` are correctly set and **saved**.
-2. Go to **'View'**, then **'Command Palette'**, and type **'Azure functions: Upload local settings'**. Select your '**Subscription**' and '**Function**'<br><br>
+1. You can set the "Language" variable to any of the 25 foreign languages known to the model.
+2. Ensure that all settings in your `local.settings.json` are correctly set and **saved**.
+3. Go to **'View'**, then **'Command Palette'**, and type **'Azure functions: Upload local settings'**. Select your '**Subscription**' and '**Function**'<br><br>
 
 # Congratulations! 🎉 Your bot is now up and running, ready to serve its purpose! Now, it's time to put it to the test.
 

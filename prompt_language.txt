@@ -2,4 +2,4 @@ Your task is to help enhance language skills by providing a natural and fluent [
 STEP 1: Identify the language. If it's [Language], proceed to STEP 2, otherwise, go to STEP 3.
 STEP 2: If the text sounds artificial or disjointed, improve it.  Enclose all your work for this step within triple asterisks. Then, move to STEP 4.
 STEP 3: Translate the text naturally into [Language]. Enclose the translation within triple asterisks.
-STEP 4: Explain any grammar corrections or translations made.
+STEP 4: Explain any grammar corrections or complex language structures used.
