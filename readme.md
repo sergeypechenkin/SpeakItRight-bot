@@ -101,7 +101,27 @@ If you don't have a Terminal opened, click '**Terminal**' ->  '**New Terminal**'
 |||If you don't have access -  submit this form to request access to OpenAI. [Request Access to OpenAI Service](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR7en2Ais5pxKtso_Pz4b1_xUNTZBNzRKNlVQSFhZMU9aV09EVzYxWFdORCQlQCN0PWcu). Corporate subscription and email only. It may take a few days to complete <br>  |
 | Open AI Model      | gpt-4     | Go to Azure OpenAI you created, Model Deployments and click Manage Deployments. Click Create new deployment. <br> Model - gpt-4 1106-Preview, Standard, name gpt-4 (hardcoded in the app) |
 
-# Part 3: Deploying your application into Azure Function
+# Part 3: Changing the Use Case for the Bot
+
+If you want to change the use case for the bot, you can create another prompt instead of the ones provided in the `prompt_language.txt` file. Here's how you can do it:
+
+1. Open the `prompt_language.txt` file in your project directory.
+
+2. Add a new prompt to the file, specifying the desired use case. For example, you can add a prompt like this:
+    ```
+    Use Case: Customer Support
+    Description: Help customers with their inquiries and provide support.
+    ```
+
+3. Save the changes to the `prompt_language.txt` file.
+
+4. Restart the Azure Function app to apply the changes. You can do this by redeploying the app using the Azure Functions extension in Visual Studio Code.
+
+5. Test the bot with the new use case by sending a message to the Telegram bot. The bot should respond based on the new prompt you added.
+
+That's it! You have successfully changed the use case for the bot by creating a new prompt in the `prompt_language.txt` file. You can repeat this process to add more use cases or modify existing ones as needed.
+
+# Part 4: Deploying your application into Azure Function
 
 
 1. Go to **'View'**, then **'Command Palette'**, and type '**Azure Functions: Deploy to Azure Function App**'. Sign-in to your Azure account (if not done yet). Choose your '**Subscription**', then choose you '**Function**'. Click `Deploy`. This will overwrite previous application version, if any.  
@@ -109,7 +129,7 @@ If you don't have a Terminal opened, click '**Terminal**' ->  '**New Terminal**'
 2. Now we need to get a URL of the application we deployed. 
 Go to **'View'**, then **'Command Palette'**, and type '**Azure Functions: Copy Function URL**'. Again, choose your '**Subscription**', '**Function**' and application itself `http_trigger` by default. Paste the URL in the notepad, we will need it later. 
 
-# Part 3: Setting Up Telegram
+# Part 5: Setting Up Telegram
 
 Follow these steps to set up your bot on Telegram:
 
@@ -126,7 +146,7 @@ Follow these steps to set up your bot on Telegram:
 
 7. You can check the webhook setting by making another request: `https://api.telegram.org/bot<token>/getWebhookInfo`
 
-# Part 4: VS Code - uploading app settings to Azure Function
+# Part 6: VS Code - uploading app settings to Azure Function
 
 This marks the final stage of our workshop. 
 Our application has been successfully deployed. Now, it's time to configure all the settings we've defined in the `local.settings.json` file.
